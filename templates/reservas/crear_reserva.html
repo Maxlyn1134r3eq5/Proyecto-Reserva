@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Reserva</title>
+</head>
+<body>
+<h2>Crear Reserva</h2>
+<form method="POST">
+  {% csrf_token %}
+  <label>Cancha:</label>
+  <select name="cancha" required>
+    {% for cancha in canchas %}
+      <option value="{{ cancha.id }}">{{ cancha.nombre }}</option>
+    {% endfor %}
+  </select><br>
+
+  <label>Fecha:</label>
+  <input type="date" name="fecha" required><br>
+
+  <label>Hora inicio:</label>
+  <input type="time" name="hora_inicio" required><br>
+
+  <label>Hora fin:</label>
+  <input type="time" name="hora_fin" required><br>
+
+  <label>Cantidad de jugadores:</label>
+  <input type="number" name="cantidad_jugadores" required><br>
+
+  <button type="submit">Guardar</button>
+</form>
+</body>
+</html>

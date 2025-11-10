@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista reservas</title>
+</head>
+<body>
+    <h2>Mis Reservas</h2>
+<a href="{% url 'crear_reserva' %}">+ Nueva Reserva</a>
+
+<table border="1">
+  <tr>
+    <th>Cancha</th>
+    <th>Fecha</th>
+    <th>Hora Inicio</th>
+    <th>Hora Fin</th>
+    <th>Estado</th>
+    <th>Acciones</th>
+  </tr>
+  {% for reserva in reservas %}
+  <tr>
+    <td>{{ reserva.cancha.nombre }}</td>
+    <td>{{ reserva.fecha }}</td>
+    <td>{{ reserva.hora_inicio }}</td>
+    <td>{{ reserva.hora_fin }}</td>
+    <td>{{ reserva.estado }}</td>
+    <td>
+      <a href="{% url 'modificar_reserva' reserva.id %}">Editar</a> |
+      <a href="{% url 'cancelar_reserva' reserva.id %}">Cancelar</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="6">No tienes reservas aún.</td></tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>

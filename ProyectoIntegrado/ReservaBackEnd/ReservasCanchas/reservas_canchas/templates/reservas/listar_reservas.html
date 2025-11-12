@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Reservas</title>
+</head>
+<body>
+    <h2>Mis Reservas</h2>
+    {% if reservas %}
+        <ul>
+        {% for reserva in reservas %}
+            <li>
+                {{ reserva.cancha.nombre }} - {{ reserva.fecha }} ({{ reserva.hora_inicio }} - {{ reserva.hora_fin }})
+                - Estado: {{ reserva.estado }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tienes reservas registradas.</p>
+    {% endif %}
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+</html>

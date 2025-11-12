@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+</head>
+<body>
+    <h2>Bienvenido, {{ user.username }}</h2>
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+    <hr>
+
+    <h3>Canchas disponibles</h3>
+    <ul>
+        {% for cancha in canchas %}
+            <li>
+                <strong>{{ cancha.nombre }}</strong> - {{ cancha.tipo_superficie }}
+                <br>
+                <a href="{% url 'crear_reserva' cancha.id %}">Reservar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <a href="{% url 'listar_reservas' %}">Mis reservas</a>
+</body>
+</html>
+

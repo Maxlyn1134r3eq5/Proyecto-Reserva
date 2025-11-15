@@ -1,33 +1,65 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Crear Reserva</title>
-</head>
-<body>
-<h2>Crear Reserva</h2>
-<form method="POST">
-  {% csrf_token %}
-  <label>Cancha:</label>
-  <select name="cancha" required>
-    {% for cancha in canchas %}
-      <option value="{{ cancha.id }}">{{ cancha.nombre }}</option>
-    {% endfor %}
-  </select><br>
+{% extends "base.html" %}
+{% load static %}
 
-  <label>Fecha:</label>
-  <input type="date" name="fecha" required><br>
+{% block titulo %}
+Crear Reserva
+{% endblock %}
 
-  <label>Hora inicio:</label>
-  <input type="time" name="hora_inicio" required><br>
+{% block contenido %}
+<div class="form-container">
+    <h2>Crear Reserva</h2>
+    <form method="POST" id="formReserva">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Cancha:</label>
+            <select name="cancha" id="cancha_select" required>
+                <option value="">Selecciona una cancha</option>
+                {% for cancha in canchas %}
+                    <option value="{{ cancha.id }}" data-precio="{{ cancha.precio|default:20000 }}">
+                        {{ cancha.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
 
-  <label>Hora fin:</label>
-  <input type="time" name="hora_fin" required><br>
+        <div class="form-group">
+            <label>Fecha:</label>
+            <input type="date" name="fecha" id="fecha_input" required><br>
+        </div>
 
-  <label>Cantidad de jugadores:</label>
-  <input type="number" name="cantidad_jugadores" required><br>
+        <div class="form-group">
+            <label>Hora inicio:</label>
+            <select name="hora_inicio" id="hora_inicio_select" required disabled>
+                <option value="">Selecciona fecha para ver horas</option>
+            </select>
+        </div>
 
-  <button type="submit">Guardar</button>
-</form>
-</body>
-</html>
+        <div class="form-group">
+            <label>Duración (horas):</label>
+            <select name="duracion" id="duracion_select" required>
+                <option value="1">1 hora</option>
+                <option value="1.5">1.5 horas</option>
+                <option value="2">2 horas</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Cantidad de jugadores:</label>
+            <input type="number" name="cantidad_jugadores" id="cantidad_jugadores_input" min="5" max="22" required>
+        </div>
+
+        <p class="resumen-reserva">Costo total estimado: <strong id="costoTotal">$0</strong></p>
+        
+        <button type="submit" id="btnGuardar" class="btn-primary" disabled>
+            Continuar con el Pago
+        </button>
+        <p class="note">La reserva se confirma una vez completado el pago.</p>
+
+    </form>
+</div>
+
+{% block scripts %}
+<script src="{% static 'js/reserva.js' %}"></script>
+{% endblock scripts %}
+
+{% endblock contenido %}

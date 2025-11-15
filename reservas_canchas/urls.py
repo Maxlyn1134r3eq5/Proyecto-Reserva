@@ -24,5 +24,5 @@ urlpatterns = [
     path('canchas/', include('canchas.urls')),
     path('reservas/', include('reservas.urls')),
     path('usuarios/', include('usuarios.urls')),
-    
+    path('accounts/', include('django.contrib.auth.urls')),   
 ]

@@ -124,15 +124,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES = [STATIC_URL]
+STATICFILES = [
+    BASE_DIR / 'static',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+# settings.py
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'usuarios.Usuario'
 
-LOGIN_URL = '/usuarios/login/'
-LOGIN_REDIRECT_URL = '/'
 
-LOGOUT_REDIRECT_URL = '/usuarios/login/'
+
+# URL que usa Django cuando se requiere iniciar sesión
+LOGIN_URL = 'login_user'
+
+# URL a donde redirige después de iniciar sesión (tu Landing Page)
+LOGIN_REDIRECT_URL = 'home'
+
+# URL a donde redirige después de cerrar sesión
+LOGOUT_REDIRECT_URL = 'login_user'

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST: Formulario de Reserva Funcional</title>
+    <link rel="stylesheet" href="static/css/estilos.css"> 
+</head>
+<body>
+    <header class="navbar">
+        <a href="#" class="logo">⚽ CanchaYa!</a>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Reservar</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="form-container">
+            <h2>Crear Reserva (Modo Test)</h2>
+            <form method="POST" id="formReserva">
+                <div class="form-group">
+                    <label>Cancha:</label>
+                    <select name="cancha" id="cancha_select" required>
+                        <option value="">Selecciona una cancha</option>
+                        <option value="1" data-precio="23000">Cancha 7 | Talca ($23.000)</option>
+                        <option value="2" data-precio="35000">Cancha 11 | Maule ($35.000)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha:</label>
+                    <input type="date" name="fecha" id="fecha_input" required><br>
+                </div>
+
+                <div class="form-group">
+                    <label>Hora inicio:</label>
+                    <select name="hora_inicio" id="hora_inicio_select" required disabled>
+                        <option value="">Selecciona fecha para ver horas</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Duración (horas):</label>
+                    <select name="duracion" id="duracion_select" required>
+                        <option value="1">1 hora</option>
+                        <option value="1.5">1.5 horas</option>
+                        <option value="2">2 horas</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cantidad_jugadores_input">Cantidad de jugadores: <span id="jugadores_valor">10</span></label>
+                    <input type="range" name="cantidad_jugadores" id="cantidad_jugadores_input" min="5" max="22" value="10" required>
+                </div>
+
+                <p class="resumen-reserva">Costo total estimado: <strong id="costoTotal">$0</strong></p>
+                
+                <button type="submit" id="btnGuardar" class="btn-primary" disabled>
+                    Continuar con el Pago
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script src="static/js/reserva.js"></script>
+</body>
+</html>

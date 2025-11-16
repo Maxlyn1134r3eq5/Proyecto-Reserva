@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Cancha</title>
+</head>
+<body>
+    <h2>{{ cancha.nombre }}</h2>
+    <p><strong>Tipo de superficie:</strong> {{ cancha.tipo_superficie }}</p>
+    <p><strong>Precio:</strong> ${{ cancha.precio }}</p>
+
+    <a href="{% url 'crear_reserva' cancha.id %}">Reservar esta cancha</a> |
+    <a href="{% url 'home' %}">Volver al inicio</a>
+</body>
+</html>

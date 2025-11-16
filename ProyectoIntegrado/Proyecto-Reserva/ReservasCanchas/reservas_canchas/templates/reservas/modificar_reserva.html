@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar</title>
+</head>
+<body>
+    <h2>Modificar Reserva</h2>
+<form method="POST">
+  {% csrf_token %}
+  <label>Cancha:</label>
+  <select name="cancha">
+    {% for cancha in canchas %}
+      <option value="{{ cancha.id }}" {% if cancha.id == reserva.cancha.id %}selected{% endif %}>{{ cancha.nombre }}</option>
+    {% endfor %}
+  </select><br>
+
+  <label>Fecha:</label>
+  <input type="date" name="fecha" value="{{ reserva.fecha|date:'Y-m-d' }}"><br>
+
+  <label>Hora inicio:</label>
+  <input type="time" name="hora_inicio" value="{{ reserva.horaInicio }}"><br>
+
+  <label>Hora fin:</label>
+  <input type="time" name="hora_fin" value="{{ reserva.horaFin }}"><br>
+
+  <label>Cantidad de jugadores:</label>
+  <input type="number" name="cantidad_jugadores" value="{{ reserva.cantidadJugadores }}"><br>
+
+  <button type="submit">Actualizar</button>
+</form>
+
+</body>
+</html>

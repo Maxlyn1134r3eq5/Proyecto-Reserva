@@ -28,17 +28,21 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+
         user = authenticate(request, username=username, password=password)
+
         if user:
             login(request, user)
-            return redirect('home')  # 👉 te lleva al home después del login
+            return redirect('usuarios:home')
         else:
             messages.error(request, 'Credenciales incorrectas.')
+
     return render(request, 'usuarios/login.html')
+
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('usuarios:login')
 
 @login_required
 def home(request):

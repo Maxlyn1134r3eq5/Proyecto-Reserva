@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Canchas</title>
+</head>
+<body>
+    <h1>Listado de Canchas Disponibles</h1>
+    <ul>
+        {% for cancha in canchas %}
+            <li>{{ cancha.nombre }} - {{ cancha.tipo }} - ${{ cancha.precio }}</li>
+        {% empty %}
+            <li>No hay canchas disponibles</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

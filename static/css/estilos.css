@@ -1,0 +1,90 @@
+/* --- Variables y Reset Básico --- */
+/* ... mantener el código existente ... */
+
+/* --- 1. FONDO Y BODY (base.html / home.html) --- */
+.body-home { 
+    background-image: url('../img/futbol3.jpg'); 
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    /* Quitamos el min-height del body para manejarlo con el Hero */
+}
+
+/* --- 2. SECCIÓN HERO (El elemento más profesional) --- */
+.hero-section {
+    min-height: 85vh; /* Ocupa casi toda la altura visible */
+    display: flex;
+    align-items: center; /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal */
+    text-align: center;
+    
+    /* Añade una capa oscura semitransparente sobre la imagen */
+    background-color: rgba(0, 0, 0, 0.45); 
+    color: white;
+    padding: 100px 0;
+    margin-bottom: 40px;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 20px;
+    /* Sombra para hacer que el texto destaque sobre el fondo */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+}
+
+.hero-content h1 {
+    font-size: 3.2em;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.4em;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+/* Estilo del Botón de Llamada a la Acción (CTA) */
+.btn-cta {
+    display: inline-block;
+    background-color: var(--color-secondary); /* Color de acento (Naranja) */
+    color: white;
+    padding: 15px 35px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 112, 67, 0.5);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-cta:hover {
+    background-color: #f55f2f;
+    transform: translateY(-2px);
+}
+
+
+/* --- 3. SECCIÓN DE LISTADO (Ajustes para aparecer debajo del Hero) --- */
+
+.listado-section {
+    /* Esta es la caja que contiene los filtros y la lista */
+    padding-top: 20px;
+    background-color: white; /* Asegura que el resto del contenido no sea transparente */
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); /* Sombra para separar del hero */
+    border-radius: 12px 12px 0 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2em;
+    color: var(--color-primary);
+    margin-bottom: 30px;
+}
+
+.list-count-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: var(--color-secondary);
+}
+
+/* ... Mantener el resto de los estilos de .home-layout y .cancha-card ... */

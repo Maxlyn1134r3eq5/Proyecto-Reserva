@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Reservas de Canchas{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="{% url 'home' %}" class="logo">⚽ CanchaYa!</a>
+        <nav>
+            <a href="{% url 'home' %}">Inicio</a>
+            <a href="{% url 'crear_reserva' %}">Reservar</a> 
+            <a href="#">Mis Reservas</a>
+            {% if user.is_authenticated %}
+                <a href="#">Hola, {{ user.username }}</a>
+                <a href="{% url 'logout' %}" class="nav-button">Salir <i class="fa-solid fa-right-from-bracket"></i></a>
+            {% else %}
+                <a href="{% url 'login_user' %}" class="nav-button">Ingresar <i class="fa-solid fa-user"></i></a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block contenido %}{% endblock %}
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2025 Proyecto Integrado. Ingeniería en Informática.</p>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

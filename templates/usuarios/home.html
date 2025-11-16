@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}body-home{% endblock %} 
+
+{% block titulo %}
+Reserva Tu Cancha Hoy 🏟️
+{% endblock %}
+
+{% block contenido %}
+
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>¡La forma más fácil de reservar tu cancha en Maule!</h1>
+        <p>Encuentra canchas de fútbol 5, 7 y 11, consulta disponibilidad en tiempo real y reserva desde la web de forma segura.</p>
+        
+        <a href="{% url 'crear_reserva' %}" class="btn-cta">
+            Reservar Ahora <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+
+<div class="listado-section">
+    
+    <h2 class="section-title">Encuentra tu espacio ideal</h2>
+
+    <div class="home-layout">
+        <aside class="sidebar-filters">
+            <h3>Selección de Filtros</h3>
+            <div class="filter-group">
+                <h4>Ubicación</h4>
+                <label><input type="checkbox"> Talca</label>
+                <label><input type="checkbox"> Maule</label>
+            </div>
+            <hr>
+            <div class="filter-group">
+                <h4>Tipo de Cancha</h4>
+                <label><input type="radio" name="tipo_cancha" value="f7"> Fútbol 7</label>
+                <label><input type="radio" name="tipo_cancha" value="f11"> Fútbol 11</label>
+            </div>
+            <button class="btn-filter">Aplicar Filtros</button>
+        </aside>
+
+        <section class="cancha-list">
+            <h3 class="list-count-title">Canchas Disponibles ({% if canchas %}{{ canchas|length }}{% else %}0{% endif %})</h3>
+            
+            {% if canchas %}
+                {% for cancha in canchas %}
+                    <div class="cancha-card">
+                        {% if forloop.counter|divisibleby:"2" %}
+                            <img src="{% static 'img/cancha2.jpg' %}" alt="{{ cancha.nombre }}">
+                        {% else %}
+                            <img src="{% static 'img/cancha1.jpg' %}" alt="{{ cancha.nombre }}">
+                        {% endif %}
+                        
+                        <div class="cancha-info">
+                            <h4>{{ cancha.nombre }} | {{ cancha.ubicacion|default:"(Ubicación)" }}</h4>
+                            <div class="cancha-details">
+                                <span class="price">${{ cancha.precio|default:20000|floatformat:0 }} / Hr</span>
+                                <a href="{% url 'crear_reserva' %}" class="btn-reserve">Reservar</a> 
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-results">No se encontraron canchas disponibles.</p>
+            {% endif %}
+        </section>
+    </div>
+</div>
+
+{% block scripts %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock scripts %}
+
+{% endblock contenido %}
